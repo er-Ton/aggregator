@@ -2,8 +2,8 @@ name: Get Subscription Weekly
 
 on:
   schedule:
-    - cron: '0 16 * * 6'  # ±±¾©Ê±¼äÃ¿ÖÜÈÕÁè³¿Ö´ÐÐ
-  workflow_dispatch: # ÔÊÐíÊÖ¶¯´¥·¢
+    - cron: '0 16 * * 6'  # ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½è³¿Ö´ï¿½ï¿½
+  workflow_dispatch: # ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½
 
 jobs:
   execute-script:
@@ -27,11 +27,17 @@ jobs:
         run: |
           python -u subscribe/collect.py
 
+      - name: Handle Proxies
+        id: handle
+        run: |
+          python -u subscribe/handleProxies.py
+
       - name: Create/Update Gist
         env:
           GH_TOKEN: ${{ secrets.PAT}}
         run: |
-          gh gist edit ${{ secrets.GIST_ID }} --add "proxies.yaml"
-          gh gist edit ${{ secrets.GIST_ID }} --add "subscribes.txt"
-          gh gist edit ${{ secrets.GIST_ID }} --add "domains.txt"
-          gh gist edit ${{ secrets.GIST_ID }} --add "valid-domains.txt"
+          gh gist edit ${{ secrets.GIST_ID }} --add "data/proxies.yaml"
+          gh gist edit ${{ secrets.GIST_ID }} --add "data/subscribes.txt"
+          gh gist edit ${{ secrets.GIST_ID }} --add "data/domains.txt"
+          gh gist edit ${{ secrets.GIST_ID }} --add "data/valid-domains.txt"
+          gh gist edit ${{ secrets.GIST_ID }} --add "data/proxy-config.yaml"
