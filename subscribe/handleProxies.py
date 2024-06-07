@@ -99,12 +99,12 @@ def main():
 
 
     # 写入新文件
-    proxy_config = load_yaml('data/proxy-config.yaml')
+    proxy_config = load_yaml('result/proxy-config.yaml')
 
     proxy_config["proxies"] = proxies_data['proxies']
     proxy_config["proxy-groups"] = proxy_groups
 
-    save_yaml(proxy_config, 'data/proxy-config.yaml')
+    save_yaml(proxy_config, 'result/proxy-config.yaml')
 
 if __name__ == '__main__':
     main()

@@ -136,3 +136,4 @@ subscribe/config/config.json
 config.local.json
 Dockerfile
 .dockerignore
+/data/
