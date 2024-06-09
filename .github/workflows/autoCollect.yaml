@@ -36,8 +36,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PAT}}
         run: |
-          gh gist edit ${{ secrets.GIST_ID }} --add "data/proxies.yaml"
-          gh gist edit ${{ secrets.GIST_ID }} --add "data/subscribes.txt"
-          gh gist edit ${{ secrets.GIST_ID }} --add "data/domains.txt"
-          gh gist edit ${{ secrets.GIST_ID }} --add "data/valid-domains.txt"
           gh gist edit ${{ secrets.GIST_ID }} --add "data/proxy-config.yaml"
