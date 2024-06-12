@@ -36,4 +36,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PAT}}
         run: |
-          gh gist edit ${{ secrets.GIST_ID }} --add "data/proxy-config.yaml"
+          gh gist edit ${{ secrets.GIST_ID }} --add "result/proxy-config.yaml"
