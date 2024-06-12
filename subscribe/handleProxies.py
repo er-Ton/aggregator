@@ -1,5 +1,6 @@
 import yaml
 import re
+import datetime
 
 def load_yaml(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -103,6 +104,7 @@ def main():
 
     proxy_config["proxies"] = proxies_data['proxies']
     proxy_config["proxy-groups"] = proxy_groups
+    proxy_config["config-version"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     save_yaml(proxy_config, 'result/proxy-config.yaml')
 

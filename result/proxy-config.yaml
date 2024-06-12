@@ -1,4 +1,4 @@
-# version 2024-06-12 15:27:00
+config-version: 2024-06-12 15:29:00
 allow-lan: true
 bind-address: '*'
 dns:
