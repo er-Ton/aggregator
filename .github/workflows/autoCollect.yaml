@@ -2,7 +2,7 @@ name: Auto Collector
 
 on:
   schedule:
-    - cron: '0 16 * * 6'  # ����ʱ��ÿ�����賿ִ��
+    - cron: '0 22 * * *'  # ����ʱ��ÿ�����賿ִ��
   workflow_dispatch: # �����ֶ�����
 
 jobs:
