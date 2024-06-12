@@ -1,0 +1,29 @@
+name: test
+
+on:
+#  schedule:
+#    - cron: '0 16 * * 6'  # ����ʱ��ÿ�����賿ִ��
+  workflow_dispatch: # �����ֶ�����
+
+jobs:
+  execute-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          pip3 install pyYAML requests
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: add gist
+        env:
+          GH_TOKEN: ${{ secrets.PAT}}
+        run: |
+          gh gist edit ${{ secrets.GIST_ID }} --add "result/proxy-config.yaml"

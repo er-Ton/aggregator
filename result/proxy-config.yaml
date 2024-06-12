@@ -1,3 +1,4 @@
+# version 2024-06-12 15:27:00
 allow-lan: true
 bind-address: '*'
 dns:
