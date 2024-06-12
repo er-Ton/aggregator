@@ -1,0 +1,32 @@
+name: handle
+
+on:
+  workflow_dispatch: # ???????????
+
+jobs:
+  execute-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          pip3 install pyYAML requests
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Handle Proxies
+        id: handle
+        run: |
+          python -u subscribe/handleProxies.py
+
+      - name: Create/Update Gist
+        env:
+          GH_TOKEN: ${{ secrets.PAT}}
+        run: |
+          gh gist edit ${{ secrets.GIST_ID }} --add "result/proxy-config.yaml"
