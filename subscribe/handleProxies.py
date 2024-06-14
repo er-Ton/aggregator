@@ -1,6 +1,6 @@
 import yaml
 import re
-import datetime
+from datetime import datetime, timezone, timedelta
 
 def load_yaml(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -104,7 +104,17 @@ def main():
 
     proxy_config["proxies"] = proxies_data['proxies']
     proxy_config["proxy-groups"] = proxy_groups
-    proxy_config["config-version"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    # 获取当前的UTC时间
+    current_utc_time = datetime.now(timezone.utc)
+
+    # 定义北京时间（UTC+8）
+    beijing_timezone = timezone(timedelta(hours=8))
+
+    # 将UTC时间转换为北京时间
+    beijing_time = current_utc_time.astimezone(beijing_timezone)
+
+    proxy_config["config-version"] = beijing_time.strftime('%Y-%m-%d %H:%M:%S')
 
     save_yaml(proxy_config, 'result/proxy-config.yaml')
 
