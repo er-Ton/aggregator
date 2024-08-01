@@ -1,8 +1,8 @@
 name: Auto Collector
 
 on:
-  schedule:
-    - cron: '0 0,4,12 * * *' #每天8、12、20点执行，UTC时间比北京时间慢8小时
+#  schedule:
+#    - cron: '0 0,4,12 * * *' #每天8、12、20点执行，UTC时间比北京时间慢8小时
   workflow_dispatch: # �����ֶ�����
 
 jobs:
